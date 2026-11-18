@@ -1,0 +1,326 @@
+import { Client, PaymentRecord, GymNotification } from '../types';
+
+export const INITIAL_CLIENTS: Client[] = [
+  {
+    id: 'c1',
+    name: 'Arun Kumar',
+    phone: '9876543210',
+    email: 'arun@gmail.com',
+    avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80',
+    startDate: '07 Sep 2024',
+    expiryDate: '07 Oct 2024',
+    daysLeft: 2,
+    plan: '1 Month (30 Days)',
+    amount: 1000,
+    status: 'Expiring',
+    joinDate: '07 Jan 2024',
+    emergencyContact: '9876543211',
+    notes: 'Morning batch (6:00 AM - 7:30 AM). Focus on strength training.'
+  },
+  {
+    id: 'c2',
+    name: 'Dinesh',
+    phone: '9123456780',
+    email: 'dinesh.fit@gmail.com',
+    avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=80',
+    startDate: '10 Sep 2024',
+    expiryDate: '08 Oct 2024',
+    daysLeft: 3,
+    plan: '1 Month (30 Days)',
+    amount: 1000,
+    status: 'Expiring',
+    joinDate: '10 Mar 2024',
+    emergencyContact: '9123456789'
+  },
+  {
+    id: 'c3',
+    name: 'Manoj',
+    phone: '9001122334',
+    email: 'manoj.k@gmail.com',
+    avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&auto=format&fit=crop&q=80',
+    startDate: '05 Aug 2024',
+    expiryDate: '10 Oct 2024',
+    daysLeft: 5,
+    plan: '1 Month (30 Days)',
+    amount: 1000,
+    status: 'Expiring',
+    joinDate: '05 Aug 2024'
+  },
+  {
+    id: 'c4',
+    name: 'Priya',
+    phone: '9887766554',
+    email: 'priya.fitness@gmail.com',
+    avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&auto=format&fit=crop&q=80',
+    startDate: '12 Sep 2024',
+    expiryDate: '11 Oct 2024',
+    daysLeft: 6,
+    plan: '3 Months',
+    amount: 2700,
+    status: 'Active',
+    joinDate: '12 Dec 2023',
+    notes: 'Cardio & functional cross-training batch.'
+  },
+  {
+    id: 'c5',
+    name: 'Suresh',
+    phone: '8765432190',
+    email: 'suresh.s@gmail.com',
+    avatar: 'https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?w=150&auto=format&fit=crop&q=80',
+    startDate: '15 Aug 2024',
+    expiryDate: '12 Oct 2024',
+    daysLeft: 7,
+    plan: '1 Month (30 Days)',
+    amount: 1000,
+    status: 'Expiring',
+    joinDate: '15 Jan 2024'
+  },
+  {
+    id: 'c6',
+    name: 'Karthik',
+    phone: '9345678901',
+    email: 'karthik.r@gmail.com',
+    avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&auto=format&fit=crop&q=80',
+    startDate: '01 Aug 2024',
+    expiryDate: '29 Sep 2024',
+    daysPending: 6,
+    plan: '1 Month (30 Days)',
+    amount: 1000,
+    status: 'Pending',
+    joinDate: '01 Aug 2024'
+  },
+  {
+    id: 'c7',
+    name: 'Ravi',
+    phone: '9840112233',
+    email: 'ravi.power@gmail.com',
+    avatar: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=150&auto=format&fit=crop&q=80',
+    startDate: '03 Aug 2024',
+    expiryDate: '03 Oct 2024',
+    daysPending: 2,
+    plan: '1 Month (30 Days)',
+    amount: 1000,
+    status: 'Pending',
+    joinDate: '03 Mar 2024'
+  },
+  {
+    id: 'c8',
+    name: 'Vignesh',
+    phone: '9790223344',
+    email: 'vignesh.gym@gmail.com',
+    avatar: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=150&auto=format&fit=crop&q=80',
+    startDate: '28 Jul 2024',
+    expiryDate: '28 Sep 2024',
+    daysPending: 7,
+    plan: '1 Month (30 Days)',
+    amount: 1000,
+    status: 'Pending',
+    joinDate: '28 May 2024'
+  },
+  {
+    id: 'c9',
+    name: 'Ajith',
+    phone: '9680334455',
+    email: 'ajith.iron@gmail.com',
+    avatar: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=150&auto=format&fit=crop&q=80',
+    startDate: '26 Jul 2024',
+    expiryDate: '26 Sep 2024',
+    daysPending: 9,
+    plan: '1 Month (30 Days)',
+    amount: 1000,
+    status: 'Pending',
+    joinDate: '26 Apr 2024'
+  },
+  {
+    id: 'c10',
+    name: 'Bala',
+    phone: '9570445566',
+    email: 'bala.lift@gmail.com',
+    avatar: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?w=150&auto=format&fit=crop&q=80',
+    startDate: '25 Jul 2024',
+    expiryDate: '25 Sep 2024',
+    daysPending: 10,
+    plan: '1 Month (30 Days)',
+    amount: 1000,
+    status: 'Pending',
+    joinDate: '25 Mar 2024'
+  },
+  {
+    id: 'c11',
+    name: 'Ananya Sharma',
+    phone: '9845012345',
+    email: 'ananya.s@gmail.com',
+    avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80',
+    startDate: '01 Sep 2024',
+    expiryDate: '01 Dec 2024',
+    daysLeft: 57,
+    plan: '3 Months',
+    amount: 2700,
+    status: 'Active',
+    joinDate: '01 Sep 2024'
+  },
+  {
+    id: 'c12',
+    name: 'Rahul Varma',
+    phone: '9789012345',
+    email: 'rahul.v@gmail.com',
+    avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&auto=format&fit=crop&q=80',
+    startDate: '15 Sep 2024',
+    expiryDate: '15 Mar 2025',
+    daysLeft: 161,
+    plan: '6 Months',
+    amount: 5000,
+    status: 'Active',
+    joinDate: '15 Sep 2023'
+  }
+];
+
+export const INITIAL_PAYMENTS: PaymentRecord[] = [
+  {
+    id: 'p1',
+    clientId: 'c1',
+    clientName: 'Arun Kumar',
+    clientAvatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80',
+    date: '07 Sep 2024',
+    amount: 1000,
+    validity: '1 Month',
+    expiryDate: '07 Oct 2024',
+    status: 'Paid',
+    paymentMethod: 'UPI',
+    receiptNo: 'REC-2024-0901'
+  },
+  {
+    id: 'p2',
+    clientId: 'c1',
+    clientName: 'Arun Kumar',
+    clientAvatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80',
+    date: '07 Aug 2024',
+    amount: 1000,
+    validity: '1 Month',
+    expiryDate: '07 Sep 2024',
+    status: 'Paid',
+    paymentMethod: 'Cash',
+    receiptNo: 'REC-2024-0801'
+  },
+  {
+    id: 'p3',
+    clientId: 'c1',
+    clientName: 'Arun Kumar',
+    clientAvatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80',
+    date: '07 Jul 2024',
+    amount: 1000,
+    validity: '1 Month',
+    expiryDate: '07 Aug 2024',
+    status: 'Paid',
+    paymentMethod: 'UPI',
+    receiptNo: 'REC-2024-0701'
+  },
+  {
+    id: 'p4',
+    clientId: 'c1',
+    clientName: 'Arun Kumar',
+    clientAvatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80',
+    date: '07 Jun 2024',
+    amount: 1000,
+    validity: '1 Month',
+    expiryDate: '07 Jul 2024',
+    status: 'Paid',
+    paymentMethod: 'Card',
+    receiptNo: 'REC-2024-0601'
+  },
+  {
+    id: 'p5',
+    clientId: 'c2',
+    clientName: 'Dinesh',
+    date: '05 Oct 2024',
+    amount: 1000,
+    validity: '1 Month',
+    expiryDate: '05 Nov 2024',
+    status: 'Paid',
+    paymentMethod: 'UPI',
+    receiptNo: 'REC-2024-1001'
+  },
+  {
+    id: 'p6',
+    clientId: 'c4',
+    clientName: 'Priya',
+    date: '05 Oct 2024',
+    amount: 1500,
+    validity: '3 Months (Part)',
+    expiryDate: '12 Nov 2024',
+    status: 'Paid',
+    paymentMethod: 'Card',
+    receiptNo: 'REC-2024-1002'
+  },
+  {
+    id: 'p7',
+    clientId: 'c12',
+    clientName: 'Rahul Varma',
+    date: '05 Oct 2024',
+    amount: 1000,
+    validity: '1 Month',
+    expiryDate: '05 Nov 2024',
+    status: 'Paid',
+    paymentMethod: 'Cash',
+    receiptNo: 'REC-2024-1003'
+  }
+];
+
+export const INITIAL_NOTIFICATIONS: GymNotification[] = [
+  {
+    id: 'n1',
+    type: 'expiring',
+    title: 'Membership Expiring',
+    description: "Arun Kumar's membership expires in 2 days.",
+    timestamp: '5 Oct 2024, 10:00 AM',
+    read: false,
+    clientId: 'c1'
+  },
+  {
+    id: 'n2',
+    type: 'expired',
+    title: 'Membership Expired',
+    description: "Ravi's membership has expired.",
+    timestamp: '4 Oct 2024, 09:00 AM',
+    read: false,
+    clientId: 'c7'
+  },
+  {
+    id: 'n3',
+    type: 'payment',
+    title: 'Payment Received',
+    description: 'Dinesh paid ₹1,000.',
+    timestamp: '3 Oct 2024, 06:00 PM',
+    read: false,
+    clientId: 'c2'
+  },
+  {
+    id: 'n4',
+    type: 'expiring',
+    title: 'Upcoming Renewal',
+    description: "Priya's membership expires in 3 days.",
+    timestamp: '2 Oct 2024, 11:00 AM',
+    read: true,
+    clientId: 'c4'
+  },
+  {
+    id: 'n5',
+    type: 'new_client',
+    title: 'New Client Added',
+    description: 'Suresh joined the gym.',
+    timestamp: '1 Oct 2024, 04:30 PM',
+    read: true,
+    clientId: 'c5'
+  }
+];
+
+export const MEMBERSHIP_PLANS_DATA = [
+  { name: '3 Days', durationDays: 3, defaultPrice: 300 },
+  { name: '7 Days', durationDays: 7, defaultPrice: 500 },
+  { name: '15 Days', durationDays: 15, defaultPrice: 700 },
+  { name: '1 Month (30 Days)', durationDays: 30, defaultPrice: 1000 },
+  { name: '3 Months', durationDays: 90, defaultPrice: 2700 },
+  { name: '6 Months', durationDays: 180, defaultPrice: 5000 },
+  { name: '1 Year', durationDays: 365, defaultPrice: 9000 },
+  { name: 'Custom', durationDays: 30, defaultPrice: 1000 },
+];
